@@ -11,7 +11,7 @@ class AppTheme {
     required String bodyFont,
   }) {
     final bool isLight = brightness == Brightness.light;
-
+    print('TM ===> HeadingFont :: $headingFont BodyFont :: $bodyFont');
     if (isLight) {
       return ThemeData(
         brightness: Brightness.light,

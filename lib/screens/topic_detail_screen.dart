@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_code_editor/flutter_code_editor.dart';
 import 'package:flutter_handbook/models/topic.dart';
+import 'package:flutter_highlight/themes/monokai.dart';
+import 'package:flutter_html/flutter_html.dart';
+import 'package:highlight/languages/dart.dart';
 
 class TopicDetailScreen extends StatelessWidget {
   final Topic topic;
@@ -11,6 +15,11 @@ class TopicDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = CodeController(
+      text: topic.example,
+      language: dart,
+      readOnly: true,
+    );
     return Scaffold(
       appBar: AppBar(
         title: Text(topic.title),
@@ -20,27 +29,37 @@ class TopicDetailScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              topic.title,
-              style: Theme.of(context).textTheme.displaySmall,
-            ),
-            const SizedBox(height: 16),
-            Card(
-              child: Padding(
-                padding: const EdgeInsets.all(16),
-                child: Text(
-                  topic.overview,
-                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                        fontStyle: FontStyle.italic,
-                      ),
-                ),
+            // const SizedBox(height: 16),
+            // Card(
+            //   child: Padding(
+            //     padding: const EdgeInsets.all(16),
+            //     child: Text(
+            //       topic.title,
+            //       style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+            //             fontStyle: FontStyle.italic,
+            //           ),
+            //     ),
+            //   ),
+            // ),
+            Html(data: topic.description),
+            if (topic.example.isNotEmpty) ...[
+              const SizedBox(height: 16),
+              Text(
+                'Example',
+                style: Theme.of(context).textTheme.displaySmall,
               ),
-            ),
-            const SizedBox(height: 24),
-            Text(
-              topic.detailedDescription,
-              style: Theme.of(context).textTheme.bodyMedium,
-            ),
+              SizedBox(height: 16),
+              CodeTheme(
+                  data: CodeThemeData(styles: monokaiTheme),
+                  child: CodeField(
+                    controller: controller,
+                    gutterStyle: GutterStyle(
+                      showErrors: false,
+                      showFoldingHandles: false,
+                      showLineNumbers: false,
+                    ),
+                  )),
+            ],
           ],
         ),
       ),

@@ -151,7 +151,6 @@ class FontSettingsScreen extends ConsumerWidget {
     String currentFont,
     Function(String) onFontSelected,
   ) {
-    print('TM ===> Fonts :: ${FontConstants.defaultFonts.length}');
     return Container(
       height: 300,
       decoration: BoxDecoration(

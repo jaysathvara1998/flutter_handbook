@@ -5,6 +5,7 @@ class FontConstants {
   // Default set of fonts available in the app
   static const List<String> defaultFonts = [
     'Montserrat',
+    'Underdog',
     'Roboto',
     'Lato',
     'Poppins',

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_handbook/models/topic.dart';
+import 'package:flutter_handbook/utils/utils.dart';
 
 class TopicCard extends StatefulWidget {
   final Topic topic;
@@ -57,8 +58,9 @@ class _TopicCardState extends State<TopicCard> {
                   const Divider(),
                   const SizedBox(height: 8),
                   Text(
-                    widget.topic.overview,
+                    Utils.htmlToPlainText(widget.topic.description),
                     style: Theme.of(context).textTheme.bodyMedium,
+                    maxLines: 2,
                   ),
                   const SizedBox(height: 16),
                   Align(
