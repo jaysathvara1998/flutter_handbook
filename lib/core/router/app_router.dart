@@ -6,8 +6,6 @@ import 'package:flutter_handbook/screens/splash_screen.dart';
 import 'package:flutter_handbook/screens/topic_detail_screen.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../models/topic.dart';
-
 final GoRouter appRouter = GoRouter(
   navigatorKey: NavigationUtil.navigatorKey,
   initialLocation: '/',
@@ -23,11 +21,13 @@ final GoRouter appRouter = GoRouter(
       builder: (context, state) => const HomeScreen(),
     ),
     GoRoute(
-      path: Routes.topicDetail,
+      path: Routes.topic,
       name: RouteName.topic,
       builder: (context, state) {
-        final topic = state.extra as Topic;
-        return TopicDetailScreen(topic: topic);
+        // final topic = state.extra as Topic;
+        // return TopicDetailScreen(topic: topic);
+        final id = state.pathParameters['id']!;
+        return TopicDetailScreen(topicId: id);
       },
     ),
     GoRoute(

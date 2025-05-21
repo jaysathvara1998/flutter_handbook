@@ -1,7 +1,8 @@
 class Routes {
   static const String initial = '/';
   static const String home = '/home';
-  static const String topicDetail = '/topic-detail';
+  static const String topic = '/topic/:id';
+  // static const String topicDetail = '/topic-detail';
   static const String settings = '/settings';
 }
 
